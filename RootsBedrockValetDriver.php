@@ -49,7 +49,10 @@ class RootsBedrockValetDriver extends BasicValetDriver
     public function frontControllerPath($sitePath, $siteName, $uri)
     {
         if (0 === strpos($uri, '/wp/')) {
-            return $sitePath.$uri;
+            if (false === strpos($uri, '.php')) {
+                return $sitePath.'/web'.$uri.'/index.php';
+            }
+            return $sitePath.'/web'.$uri;
         }
 
         return $sitePath.'/web/index.php';
